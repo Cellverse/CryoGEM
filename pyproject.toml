@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "genem"
+dynamic = ["version"]
+authors = [
+  { name="GenEM", email="" }
+]
+description = "CryoGEM: Physics-Informed Generative Cryo-Electron Microscopy"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: POSIX :: Linux",
+]
+dependencies = [
+    "torch==1.13.1",
+    "torchvision==0.14.1",
+    "torchaudio==0.13.1",
+    "GPUtil",
+    "pandas<2",
+    "numpy<1.23",
+ 
+    "opencv-python",
+    "matplotlib<3.7",
+    "pillow",
+    "kornia",
+    "wandb",
+    "visdom",
+    "dominate==2.4.0",
+
+    "tqdm",
+    "argparse",
+    "jupyterlab",
+
+    "mrcfile",
+    "starfile",
+    "cryodrgn",
+
+]
+
+[project.optional-dependencies]
+dev = [
+    "build",
+    "myst-parser",
+    "pre-commit",
+    "pyright==1.1.300",
+    "pytest>=6",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "twine"
+]
+
+[project.scripts]
+genem = "genem.__main__:main"
+genem_utils = "genem.utils_exec:main"
+
+[project.urls]
+"Homepage" = ""
+
+[tool.setuptools_scm]
+write_to = "genem/_version.py"
+
+[tool.setuptools]
+include-package-data = true
+zip-safe = false
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["genem*"]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-rA"
+testpaths = [
+    "tests"
+]
+
+[tool.pyright]
+exclude = ["build/**"]
