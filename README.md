@@ -199,5 +199,5 @@ Example:
 
 # Results
 
-By following the testing commands, you can check the folder `save_images/test/Ribosome(10028)/genem/empair-10028-test/mics_png_fake_B`. A stands for the physical simulation domain, B stands for the real cryo-EM data domain. So `fake_B` is the synthetic dataset. We also provide the annotations of particle picking (`save_images/test/Ribosome(10028)/genem/empair-10028-test/particles.star`) and the annotations of pose estimation (`save_images/test/Ribosome(10028)/genem/empair-10028-test/gt_pose.pkl`)
+By following the testing commands, you can check the folder `save_images/test/Ribosome(10028)/genem/empair-10028-test/mics_png_fake_B`. `_A` stands for the physical simulation domain, `_B` stands for the real cryo-EM data domain. So `fake_B` is the folder with synthetic result. We also provide the annotations of particle picking (`save_images/test/Ribosome(10028)/genem/empair-10028-test/particles.star`) and the annotations of pose estimation (`save_images/test/Ribosome(10028)/genem/empair-10028-test/gt_pose.pkl`)
 

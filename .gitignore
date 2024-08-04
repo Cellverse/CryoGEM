@@ -163,6 +163,6 @@ dataset/
 checkpoints/
 build/
 testing/checkpoints/
-testing/data/
+testing/data/*
 save_images/
 .history/
