@@ -1,35 +1,44 @@
-
 ## CryoGEM💎 : Physics-Informed Generative Cryo-Electron Microscopy
 
-Anonymous authors 
+Anonymous authors
 
 <p align="center">
   <img src="assets/teaser.jpg", width=650>
 </p>
 
 ## 🔧 Dependencies and Installation
+
 - Python >= 3.7 (Recommend to use [Anaconda](https://www.anaconda.com/download/#linux) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html))
-- [PyTorch >= 1.7](https://pytorch.org/)
+- [PyTorch &gt;= 1.7](https://pytorch.org/)
 
 ### Installation
 
 1. Clone repo
 
-    ```bash
-    cd cryoGEM
-    ```
+   ```bash
+   cd cryoGEM
+   ```
 
-1. Install cryoGEM
+2. create conda envionment and activate
+```bash
+conda create -n cryogem python=3.11
+conda activate cryogem
 
-    ```bash 
-    pip install -e . # linux only
-    ```
+```
+
+3. Install cryoGEM
+
+```bash
+   pip install -e . # tested on Ubuntu 20.04 with a single NVIDIA RTX 3090 GPU.
+```
+
 
 ---
+# Toturial
+##  1. Prepare clean micrographs for training and testing
 
-# Prepare Clean Micrographs
 ```console
-Usage: genem gen_data [options] ...
+Usage: cryogem gen_data [options] ...
   -h                              show help
   --device                        device to run the code [cuda:0]
   --save_dir                      directory to save the projection micrographs
@@ -46,42 +55,48 @@ Usage: genem gen_data [options] ...
   --mask_threshold                threshold for particle mask   
 Example(homo):
   # training dataset
-  genem gen_data --mode homo --device cuda:0 \
+  cryogem gen_data --mode homo --device cuda:0 \
   --input_map testing/data/exp_abinitio_volumes/densitymap.10028.90.mrc \
   --save_dir save_images/gen_data/Ribosome\(10028\)/training_dataset/ \
   --n_micrographs 100 --particle_size 90 --mask_threshold 0.9
   # testing dataset
-  genem gen_data --mode homo --device cuda:0 \
+  cryogem gen_data --mode homo --device cuda:0 \
   --input_map testing/data/exp_abinitio_volumes/densitymap.10028.90.mrc  \
   --save_dir save_images/gen_data/Ribosome\(10028\)/testing_dataset/ \
   --n_micrographs 1000 --particle_size 90 --mask_threshold 0.9
 Example(hetero):
   # training dataset
-  genem gen_data --mode hetero --device cuda:0 --drgn_epoch 49 \
+  cryogem gen_data --mode hetero --device cuda:0 --drgn_epoch 49 \
   --drgn_dir testing/data/exp_abinitio_volumes/10345_neural_volume/drgn_result \
   --save_dir save_images/gen_data/Integrin\(10345\)/training_dataset/ \
   --n_micrographs 100 --particle_size 100 --mask_threshold 0.7 
   # testing dataset
-  genem gen_data --mode hetero --device cuda:0 --drgn_epoch 49 \
+  cryogem gen_data --mode hetero --device cuda:0 --drgn_epoch 49 \
   --drgn_dir testing/data/exp_abinitio_volumes/10345_neural_volume/drgn_result \
   --save_dir save_images/gen_data/Integrin\(10345\)/testing_dataset/ \
   --n_micrographs 1000 --particle_size 100 --mask_threshold 0.7 
 ```
+
+Below are dataset settings in our paper, you can use them to reproduce the result in our paper. To keep this codebase is easy to clone, we only upload homo reconstruction results in this anonymous verision. Please contact us for the neural volume weights of Intergrin if you are interested in reproducing the heterogeneous results of CryoGEM. 
+
 <div class="center">
 
-| Dataset | Symmetry | Micrograph $n_{train}/n_{test}$ | Micrograph $\text{N}\times\text{N}$ | Particles $\mu$ | Particles $\sigma$ | Particle collapse ratio | Mask threshold |
-|:-----------------:|:--:|:---------:|:---------:|:------:|:-----:|:----:|:---:|
-| Proteasome(10025) | D7 | 100/1000  | 1024x1024 | 245.88 | 33.62 | 0.75 | 0.9 |
-| Ribosome(10028)   | C1 | 100/1000  | 1024x1024 |  97.52 | 13.64 | 0.50 | 0.9 |
-| Integrin(10345)   | C1 | 100/1000  | 1024x1024 |  42.41 | 17.45 | 0.40 | 0.7 |
-| PhageMS2(10075)   | C1 | 100/1000  | 1024x1024 |  35.42 | 17.74 | 0.50 | 0.9 |
-| HumanBAF(10590)   | C1 | 100/1000  | 1024x1024 | 150.44 | 17.06 | 0.55 | 0.9 |
+|      Dataset      | Symmetry | Micrograph$n_{train}/n_{test}$ | Micrograph$\text{N}\times\text{N}$ | Particles$\mu$ | Particles$\sigma$ | Particle collapse ratio | Mask threshold |
+| :---------------: | :------: | :------------------------------: | :----------------------------------: | :--------------: | :-----------------: | :---------------------: | :------------: |
+| Proteasome(10025) |    D7    |             100/1000             |              1024x1024              |      245.88      |        33.62        |          0.75          |      0.9      |
+|  Ribosome(10028)  |    C1    |             100/1000             |              1024x1024              |      97.52      |        13.64        |          0.50          |      0.9      |
+|  Integrin(10345)  |    C1    |             100/1000             |              1024x1024              |      42.41      |        17.45        |          0.40          |      0.7      |
+|  PhageMS2(10075)  |    C1    |             100/1000             |              1024x1024              |      35.42      |        17.74        |          0.50          |      0.9      |
+|  HumanBAF(10590)  |    C1    |             100/1000             |              1024x1024              |      150.44      |        17.06        |          0.55          |      0.9      |
 
 </div>
 
-# Estimate Ice Gradient (Real)
+# 2. Estimate ice gradient for real images
+
+Before training, we need to estimate the real ice gradient from the real data for a more accurate simulation. 
+
 ```console
-Usage: genem esti_ice [options] ... 
+Usage: cryogem esti_ice [options] ... 
   -h                              show help
   --apix                          pixel size (Angstrom) [1.0]
   --input_dir                     (required) input micrograph directory
@@ -89,26 +104,35 @@ Usage: genem esti_ice [options] ...
   --output_len                    length if estimated ice gradient [1024]
   --device                        device to run the code [cuda:0]
 Example:
-  genem esti_ice --apix 5.36 --device cuda:0 \
-  --input_dir testing/data/Ribosome\(10028\)/reals/ \
+  cryogem esti_ice --apix 5.36 --device cuda:0 \
+  --input_dir testing/data/Ribosome\(10028\)/real_data/ \
   --save_dir save_images/esti_ice/Ribosome\(10028\)/ 
 ```
+
+The paired image and estimated ice gradient should be like below:
+<p align="center">
+  <img src="assets/ribosome.png", width=320>
+  <img src="assets/icegradient.png", width=320>
+</p>
+
 <div class="center">
 
-| Dataset | Apix | Ice Gradient $\text{N}\times\text{N}$ |
-|:-----------------:|:----:|:---------:|
-| Proteasome(10025) | 4.62 | 1024x1024 | 
-| Ribosome(10028)   | 5.36 | 1024x1024 |
-| Integrin(10345)   | 4.04 | 1024x1024 |
-| PhageMS2(10075)   | 4.64 | 1024x1024 |
-| HumanBAF(10590)   | 4.50 | 1024x1024 |
+|      Dataset      | Apix | Ice Gradient$\text{N}\times\text{N}$ |
+| :---------------: | :--: | :------------------------------------: |
+| Proteasome(10025) | 4.62 |               1024x1024               |
+|  Ribosome(10028)  | 5.36 |               1024x1024               |
+|  Integrin(10345)  | 4.04 |               1024x1024               |
+|  PhageMS2(10075)  | 4.64 |               1024x1024               |
+|  HumanBAF(10590)  | 4.50 |               1024x1024               |
 
 </div>
 
-# Train CryoGEM Model
-If you want to use your own dataset or model, please modify the dataset and model configuration in the [config file](genem/config.py) and create custom dataset according to [template dataset](genem/datasets/template_dataset.py) and custom model according to [template model](genem/models/template_model.py). 
+# 3. Train CryoGEM model
+
+If you want to use your own dataset or model, please modify the dataset and model configuration in the [config file](cryogem/config.py) and create custom dataset according to [template dataset](cryogem/datasets/template_dataset.py) and custom model according to [template model](cryogem/models/template_model.py).
+
 ```console
-Usage: genem train [options] ...
+Usage: cryogem train [options] ...
   -h                              show help
   --name                          experiment name [empiar-10028-test]
   --gpu_ids                       GPU ids, -1 for CPU [0]
@@ -132,16 +156,19 @@ Usage: genem train [options] ...
   --mask_dir                      directory of particle masks
   --weight_map_dir                directory of real ice gradients
 Example:
-  genem train --name empair-10028-test --max_dataset_size 100 --apix 5.36 --gpu_ids 0 \
-  --real_dir testing/data/Ribosome\(10028\)/reals/ \
+  cryogem train --name empair-10028-test --max_dataset_size 100 --apix 5.36 --gpu_ids 0 \
+  --real_dir testing/data/Ribosome\(10028\)/real_data/ \
   --sync_dir save_images/gen_data/Ribosome\(10028\)/training_dataset/mics_mrc \
   --mask_dir save_images/gen_data/Ribosome\(10028\)/training_dataset/particles_mask \
   --weight_map_dir save_images/esti_ice/Ribosome\(10028\)/ 
 ```
 
+You can check the intermidiate results (`checkpoints/empair-10028-test/web/images`) and training logs (`checkpoints/empair-10028-test/loss_log.txt`) 
+
 # Test CryoGEM Model
+After the model is trained, you can test it to generate cryoGEM synthetic dataset. The test dataset should be previously created by `gen_data`.
 ```console
-Usage: genem test [options] ...
+Usage: cryogem test [options] ...
   -h                              show help
   --name                          experiment name [empiar-10028-test]
   --gpu_ids                       GPU ids, -1 for CPU [0]
@@ -161,8 +188,8 @@ Usage: genem test [options] ...
   --generate_shift                if true, store shifted particles [False]
   --pixel_shift_max               max pixel for particle shift [5]
 Example:
-  genem test --name empair-10028-test \
-  --max_dataset_size 1000 --num_test 1000--apix 5.36 --gpu_ids 0 \
+  cryogem test --name empair-10028-test \
+  --max_dataset_size 1000 --num_test 1000 --apix 5.36 --gpu_ids 0 \
   --sync_dir save_images/gen_data/Ribosome\(10028\)/testing_dataset/mics_mrc \
   --mask_dir save_images/gen_data/Ribosome\(10028\)/testing_dataset/particles_mask \
   --pose_dir save_images/gen_data/Ribosome\(10028\)/testing_dataset/mics_particle_info \
@@ -170,15 +197,7 @@ Example:
   --save_dir save_images/test/Ribosome\(10028\)/ 
 ```
 
-# Tutorial
+# Results
 
-The tutorials are presented in Jupyter notebooks. Please install Jupyter following the instructions [here](http://jupyter.org/install).
+By following the testing commands, you can check the folder `save_images/test/Ribosome(10028)/genem/empair-10028-test/mics_png_fake_B`. A stands for the physical simulation domain, B stands for the real cryo-EM data domain. So `fake_B` is the synthetic dataset. We also provide the annotations of particle picking (`save_images/test/Ribosome(10028)/genem/empair-10028-test/particles.star`) and the annotations of pose estimation (`save_images/test/Ribosome(10028)/genem/empair-10028-test/gt_pose.pkl`)
 
-1. [EMPIAR 10028 guide](testing/empiar-10028.ipynb)
-
-To run the tutorial steps on your own system, you will need to install [Jupyter](http://jupyter.org/install).
-
-With Anaconda this can be done with:
-```
-conda install jupyter
-```

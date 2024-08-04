@@ -3,10 +3,10 @@ requires = ["setuptools>=61.0", "setuptools_scm>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "genem"
+name = "cryogem"
 dynamic = ["version"]
 authors = [
-  { name="GenEM", email="" }
+  { name="cryoGEM", email="unknown@email.com" }
 ]
 description = "CryoGEM: Physics-Informed Generative Cryo-Electron Microscopy"
 readme = "README.md"
@@ -17,12 +17,12 @@ classifiers = [
     "Operating System :: POSIX :: Linux",
 ]
 dependencies = [
-    "torch==1.13.1",
-    "torchvision==0.14.1",
-    "torchaudio==0.13.1",
+    "torch==2.3.1",
+    "torchvision==0.18.1",
+    "torchaudio==2.3.1",
     "GPUtil",
     "pandas<2",
-    "numpy<1.23",
+    "numpy<2",
  
     "opencv-python",
     "matplotlib<3.7",
@@ -55,14 +55,14 @@ dev = [
 ]
 
 [project.scripts]
-genem = "genem.__main__:main"
-genem_utils = "genem.utils_exec:main"
+cryogem = "cryogem.__main__:main"
+cryogem_utils = "cryogem.utils_exec:main"
 
 [project.urls]
-"Homepage" = ""
+"Homepage" = "https://anonymous.4open.science/r/cryoGEM-paper-id-6516"
 
 [tool.setuptools_scm]
-write_to = "genem/_version.py"
+write_to = "cryogem/_version.py"
 
 [tool.setuptools]
 include-package-data = true
@@ -70,7 +70,7 @@ zip-safe = false
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["genem*"]
+include = ["cryogem*"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"

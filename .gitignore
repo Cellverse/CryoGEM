@@ -165,3 +165,4 @@ build/
 testing/checkpoints/
 testing/data/
 save_images/
+.history/
