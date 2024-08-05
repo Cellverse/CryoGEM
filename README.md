@@ -34,7 +34,7 @@ conda activate cryogem
 
 ### Dataset
 
-As the dataset is too large to upload, please download [data.zip](https://www.dropbox.com/scl/fi/28qo2dq8e7hr5b2nrfz69/data.zip?rlkey=jxwokqvltdx52ty3k3ts1b2tg&st=mclsgsou&dl=0) on Dropbox, and unzip it to `testing/data/` .
+As the dataset is too large to upload, please download [data.zip](https://www.dropbox.com/scl/fi/0zczm5hlb1h8qes1kobhz/data.zip?rlkey=46ob2ywa80t1mcvezy4lj6tu2&st=626po0mp&dl=0) on Dropbox, and unzip it to `testing/` .
 
 ---
 
