@@ -18,8 +18,8 @@ Anonymous authors
    ```bash
    cd cryoGEM
    ```
-
 2. create conda envionment and activate
+
 ```bash
 conda create -n cryogem python=3.11
 conda activate cryogem
@@ -32,10 +32,15 @@ conda activate cryogem
    pip install -e . # tested on Ubuntu 20.04 with a single NVIDIA RTX 3090 GPU.
 ```
 
+### Dataset
+
+As the dataset is too large to upload, please download [data.zip](https://www.dropbox.com/scl/fi/28qo2dq8e7hr5b2nrfz69/data.zip?rlkey=jxwokqvltdx52ty3k3ts1b2tg&st=mclsgsou&dl=0) on Dropbox, and unzip it to `testing/data/` .
 
 ---
+
 # Toturial
-##  1. Prepare clean micrographs for training and testing
+
+## 1. Prepare clean micrographs for training and testing
 
 ```console
 Usage: cryogem gen_data [options] ...
@@ -77,7 +82,7 @@ Example(hetero):
   --n_micrographs 1000 --particle_size 100 --mask_threshold 0.7 
 ```
 
-Below are dataset settings in our paper, you can use them to reproduce the result in our paper. To keep this codebase is easy to clone, we only upload homo reconstruction results in this anonymous verision. Please contact us for the neural volume weights of Intergrin if you are interested in reproducing the heterogeneous results of CryoGEM. 
+Below are dataset settings in our paper, you can use them to reproduce the result in our paper. To keep this codebase is easy to clone, we only upload homo reconstruction results in this anonymous verision. Please contact us for the neural volume weights of Intergrin if you are interested in reproducing the heterogeneous results of CryoGEM.
 
 <div class="center">
 
@@ -93,7 +98,7 @@ Below are dataset settings in our paper, you can use them to reproduce the resul
 
 # 2. Estimate ice gradient for real images
 
-Before training, we need to estimate the real ice gradient from the real data for a more accurate simulation. 
+Before training, we need to estimate the real ice gradient from the real data for a more accurate simulation.
 
 ```console
 Usage: cryogem esti_ice [options] ... 
@@ -110,6 +115,7 @@ Example:
 ```
 
 The paired image and estimated ice gradient should be like below:
+
 <p align="center">
   <img src="assets/ribosome.png", width=320>
   <img src="assets/icegradient.png", width=320>
@@ -163,10 +169,12 @@ Example:
   --weight_map_dir save_images/esti_ice/Ribosome\(10028\)/ 
 ```
 
-You can check the intermidiate results (`checkpoints/empair-10028-test/web/images`) and training logs (`checkpoints/empair-10028-test/loss_log.txt`) 
+You can check the intermidiate results (`checkpoints/empair-10028-test/web/images`) and training logs (`checkpoints/empair-10028-test/loss_log.txt`)
 
 # Test CryoGEM Model
+
 After the model is trained, you can test it to generate cryoGEM synthetic dataset. The test dataset should be previously created by `gen_data`.
+
 ```console
 Usage: cryogem test [options] ...
   -h                              show help
@@ -200,4 +208,3 @@ Example:
 # Results
 
 By following the testing commands, you can check the folder `save_images/test/Ribosome(10028)/genem/empair-10028-test/mics_png_fake_B`. `_A` stands for the physical simulation domain, `_B` stands for the real cryo-EM data domain. So `fake_B` is the folder with synthetic result. We also provide the annotations of particle picking (`save_images/test/Ribosome(10028)/genem/empair-10028-test/particles.star`) and the annotations of pose estimation (`save_images/test/Ribosome(10028)/genem/empair-10028-test/gt_pose.pkl`)
-
