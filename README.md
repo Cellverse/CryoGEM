@@ -1,6 +1,8 @@
 ## CryoGEM💎 : Physics-Informed Generative Cryo-Electron Microscopy
 
-Anonymous authors
+Accepted by NeurIPS 2024
+
+Jiakai Zhang, Qihe Chen, Yan Zeng, Wenyuan Gao, Xuming He, Zhijie Liu, Jingyi Yu
 
 <p align="center">
   <img src="assets/teaser.jpg", width=650>
