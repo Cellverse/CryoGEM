@@ -2,7 +2,7 @@
 
 Accepted by NeurIPS 2024
 
-Jiakai Zhang, Qihe Chen, Yan Zeng, Wenyuan Gao, Xuming He, Zhijie Liu, Jingyi Yu
+[Jiakai Zhang](https://jiakai-zhang.github.io), Qihe Chen, Yan Zeng, Wenyuan Gao, Xuming He, Zhijie Liu, Jingyi Yu
 
 <p align="center">
   <img src="assets/teaser.jpg", width=650>
