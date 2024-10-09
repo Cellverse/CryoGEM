@@ -222,7 +222,7 @@ Many thanks to Qihe Chen, who is the main contributor to the code writing! This 
 # Citation
 ```
 @article{zhang2024cryogem,
-  title={Generalizing nonlinear ICA beyond structural sparsity},
+  title={CryoGEM: Physics-Informed Generative Cryo-Electron Microscopy},
   author={Zhang, Jiakai and Chen, Qihe and Zeng, Yan and Gao, Wenyuan and He, Xuming and Liu, Zhijie and Yu, Jingyi},
   journal={Advances in Neural Information Processing Systems},
   volume={37},
