@@ -1,11 +1,11 @@
 ## CryoGEM💎 : Physics-Informed Generative Cryo-Electron Microscopy
 
-Accepted by NeurIPS 2024
+Accepted by NeurIPS 2024🎉🎉🎉
 
-[Jiakai Zhang](https://jiakai-zhang.github.io), Qihe Chen, [Yan Zeng](https://zerone182.github.io), Wenyuan Gao, Xuming He, Zhijie Liu, Jingyi Yu
+[Jiakai Zhang](https://jiakai-zhang.github.io), [Qihe Chen](https://github.com/Dylan8527), [Yan Zeng](https://zerone182.github.io), Wenyuan Gao, Xuming He, Zhijie Liu, Jingyi Yu
 
 <p align="center">
-  <img src="assets/teaser.jpg", width=650>
+  <img src="assets/teaser.jpg", width=800>
 </p>
 
 ## TODOs
@@ -218,6 +218,17 @@ By following the testing commands, you can check the folder `save_images/test/Ri
 
 # Acknowledgement
 Many thanks to Qihe Chen, who is the main contributor to the code writing! This project has borrowed some code from [CUT](https://github.com/taesungp/contrastive-unpaired-translation) and [cryoDRGN](https://github.com/ml-struct-bio/cryodrgn). This project is supported by ShanghaiTech University, Cellverse.
+
+# Citation
+```
+@article{zhang2024cryogem,
+  title={Generalizing nonlinear ICA beyond structural sparsity},
+  author={Zhang, Jiakai and Chen, Qihe and Zeng, Yan and Gao, Wenyuan and He, Xuming and Liu, Zhijie and Yu, Jingyi},
+  journal={Advances in Neural Information Processing Systems},
+  volume={37},
+  year={2024}
+}
+```
 
 # Contact
 
