@@ -2,11 +2,16 @@
 
 Accepted by NeurIPS 2024
 
-[Jiakai Zhang](https://jiakai-zhang.github.io), Qihe Chen, Yan Zeng, Wenyuan Gao, Xuming He, Zhijie Liu, Jingyi Yu
+[Jiakai Zhang](https://jiakai-zhang.github.io), Qihe Chen, [Yan Zeng](https://zerone182.github.io), Wenyuan Gao, Xuming He, Zhijie Liu, Jingyi Yu
 
 <p align="center">
   <img src="assets/teaser.jpg", width=650>
 </p>
+
+## TODOs
+- [ ] Supporting AlphaFold predicted results as inputs
+- [ ] Generalization capability
+- [ ] More advanced controllability
 
 ## 🔧 Dependencies and Installation
 
@@ -171,7 +176,7 @@ Example:
   --weight_map_dir save_images/esti_ice/Ribosome\(10028\)/ 
 ```
 
-You can check the intermidiate results (`checkpoints/empair-10028-test/web/images`) and training logs (`checkpoints/empair-10028-test/loss_log.txt`)
+You can check the intermediate results (`checkpoints/empair-10028-test/web/images`) and training logs (`checkpoints/empair-10028-test/loss_log.txt`)
 
 # Test CryoGEM Model
 
@@ -209,4 +214,12 @@ Example:
 
 # Results
 
-By following the testing commands, you can check the folder `save_images/test/Ribosome(10028)/genem/empair-10028-test/mics_png_fake_B`. `_A` stands for the physical simulation domain, `_B` stands for the real cryo-EM data domain. So `fake_B` is the folder with synthetic result. We also provide the annotations of particle picking (`save_images/test/Ribosome(10028)/genem/empair-10028-test/particles.star`) and the annotations of pose estimation (`save_images/test/Ribosome(10028)/genem/empair-10028-test/gt_pose.pkl`)
+By following the testing commands, you can check the folder `save_images/test/Ribosome(10028)/genem/empair-10028-test/mics_png_fake_B`. `_A` stands for the physical simulation domain, `_B` stands for the real cryo-EM data domain. So `fake_B` is the folder with synthetic results. We also provide the annotations of particle picking (`save_images/test/Ribosome(10028)/cryogem/empair-10028-test/particles.star`) and the annotations of pose estimation (`save_images/test/Ribosome(10028)/cryogem/empair-10028-test/gt_pose.pkl`)
+
+# Acknowledgement
+Many thanks to Qihe Chen, who is the main contributor to the code writing! This project has borrowed some code from [CUT](https://github.com/taesungp/contrastive-unpaired-translation) and [cryoDRGN](https://github.com/ml-struct-bio/cryodrgn). This project is supported by ShanghaiTech University, Cellverse.
+
+# Contact
+
+For any help and further discussions, feel free to open a new issue or directly contact ``zhangjk@shanghaitech.edu.cn`` and ``qihe2024@shanghaitech.edu.cn``
+
