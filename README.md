@@ -217,7 +217,7 @@ Example:
 By following the testing commands, you can check the folder `save_images/test/Ribosome(10028)/genem/empair-10028-test/mics_png_fake_B`. `_A` stands for the physical simulation domain, `_B` stands for the real cryo-EM data domain. So `fake_B` is the folder with synthetic results. We also provide the annotations of particle picking (`save_images/test/Ribosome(10028)/cryogem/empair-10028-test/particles.star`) and the annotations of pose estimation (`save_images/test/Ribosome(10028)/cryogem/empair-10028-test/gt_pose.pkl`)
 
 # Acknowledgement
-Many thanks to Qihe Chen, who is the main contributor to the code writing! This project has borrowed some code from [CUT](https://github.com/taesungp/contrastive-unpaired-translation) and [cryoDRGN](https://github.com/ml-struct-bio/cryodrgn). This project is supported by ShanghaiTech University, Cellverse.
+Many thanks to Qihe Chen, who is the main contributor to the code writing! This project has borrowed some code from [CUT](https://github.com/taesungp/contrastive-unpaired-translation) and [cryoDRGN](https://github.com/ml-struct-bio/cryodrgn). This project was supported by ShanghaiTech University and Cellverse.
 
 # Citation
 ```
