@@ -1,6 +1,6 @@
 ## CryoGEM💎 : Physics-Informed Generative Cryo-Electron Microscopy
 
-Accepted by NeurIPS 2024🎉🎉🎉
+Accepted by NeurIPS 2024🎉🎉🎉 | [Project Page](https://jiakai-zhang.github.io/cryogem/)
 
 [Jiakai Zhang](https://jiakai-zhang.github.io), [Qihe Chen](https://github.com/Dylan8527), [Yan Zeng](https://zerone182.github.io), Wenyuan Gao, Xuming He, Zhijie Liu, Jingyi Yu
 
