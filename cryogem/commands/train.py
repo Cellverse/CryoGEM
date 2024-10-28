@@ -1,4 +1,5 @@
 import time, torch, logging, argparse
+from tqdm import tqdm
 from cryogem.options import process_opt, base_add_args
 from cryogem.datasets import create_dataset
 from cryogem.models import create_model
@@ -63,9 +64,8 @@ def main(args):
         iter_data_time = time.time()    # timer for data loading per iteration
         epoch_iter = 0                  # the number of training iterations in current epoch, reset to 0 every epoch
         visualizer.reset()              # reset the visualizer: make sure it saves the results to HTML at least once every epoch
-        model.update_learning_rate()    # update learning rates in the beginning of every epoch.
         
-        for i, data in enumerate(dataset):  # inner loop within one epoch
+        for i, data in enumerate(tqdm(dataset, desc=f"Epoch {epoch}/{opt.n_epochs}, iters: {epoch_iter}/{dataset_size}")):  # inner loop within one epoch
             iter_start_time = time.time()  # timer for computation per iteration
             if total_iters % opt.print_freq == 0:
                 t_data = iter_start_time - iter_data_time
@@ -106,6 +106,8 @@ def main(args):
                 model.save_networks(save_suffix)
             
             iter_data_time = time.time()
+        
+        model.update_learning_rate()    # update learning rates in the end of every epoch.
             
         if epoch % opt.save_epoch_freq == 0:              # cache our model every <save_epoch_freq> epochs
             logger.info('saving the model at the end of epoch %d, iters %d' % (epoch, total_iters))
