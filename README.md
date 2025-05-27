@@ -93,15 +93,17 @@ Below are dataset settings in our paper, you can use them to reproduce the resul
 
 <div class="center">
 
-|      Dataset      | Symmetry | Micrograph$n_{train}/n_{test}$ | Micrograph$\text{N}\times\text{N}$ | Particles$\mu$ | Particles$\sigma$ | Particle collapse ratio | Mask threshold |
-| :---------------: | :------: | :------------------------------: | :----------------------------------: | :--------------: | :-----------------: | :---------------------: | :------------: |
-| Proteasome(10025) |    D7    |             100/1000             |              1024x1024              |      245.88      |        33.62        |          0.75          |      0.9      |
-|  Ribosome(10028)  |    C1    |             100/1000             |              1024x1024              |      97.52      |        13.64        |          0.50          |      0.9      |
-|  Integrin(10345)  |    C1    |             100/1000             |              1024x1024              |      42.41      |        17.45        |          0.40          |      0.7      |
-|  PhageMS2(10075)  |    C1    |             100/1000             |              1024x1024              |      35.42      |        17.74        |          0.50          |      0.9      |
-|  HumanBAF(10590)  |    C1    |             100/1000             |              1024x1024              |      150.44      |        17.06        |          0.55          |      0.9      |
+|      Dataset      | Symmetry | Micrograph$n_{train}/n_{test}$ | Micrograph$\text{N}\times\text{N}$ | Particle Size| Particles$\mu$ | Particles$\sigma$ | Particle collapse ratio | Mask threshold |
+| :---------------: | :------: | :------------------------------: | :----------------------------------:| :----------------: | :--------------: | :-----------------: | :---------------------: | :------------: |
+| Proteasome(10025) |    D7    |             100/1000             |              1024x1024              | 64 |     245.88      |        33.62        |          0.75          |      0.9      |
+|  Ribosome(10028)  |    C1    |             100/1000             |              1024x1024              | 90 |     97.52      |        13.64        |          0.50          |      0.9      |
+|  Integrin(10345)  |    C1    |             100/1000             |              1024x1024              | 90 |     42.41      |        17.45        |          0.40          |      0.7      |
+|  PhageMS2(10075)  |    C1    |             100/1000             |              1024x1024              | 112 |     35.42      |        17.74        |          0.50          |      0.9      |
+|  HumanBAF(10590)  |    C1    |             100/1000             |              1024x1024              | 84 |     150.44      |        17.06        |          0.55          |      0.9      |
 
 </div>
+
+**Note: the particle size is used to downsample particle images and should not be greater than the resolusion of the initial volume.**
 
 # 2. Estimate ice gradient for real images
 
