@@ -89,8 +89,7 @@ Example(hetero):
   --n_micrographs 1000 --particle_size 100 --mask_threshold 0.7 
 ```
 
-Below are dataset settings in our paper, you can use them to reproduce the result in our paper. To keep this codebase is easy to clone, we only upload homo reconstruction results in this anonymous verision. Please contact us for the neural volume weights of Intergrin if you are interested in reproducing the heterogeneous results of CryoGEM.
-
+Below are dataset settings in our paper, you can use them to reproduce the result in our paper.
 <div class="center">
 
 |      Dataset      | Symmetry | Micrograph$n_{train}/n_{test}$ | Micrograph$\text{N}\times\text{N}$ | Particle Size| Particles$\mu$ | Particles$\sigma$ | Particle collapse ratio | Mask threshold |
