@@ -156,6 +156,8 @@ def generate_hetero_data_given_conform_pose(workdir, epoch, n_particles, z_value
     return particle_stack
 
 def downsample_volume(old, D):
+
+    assert old.shape[0] > D, "Volume size must be larger than downsample size, now {} vs {}".format(old.shape[0], D)
     oldD = old.shape[0]
     start = int(oldD / 2 - D / 2)
     stop = start + D
@@ -171,6 +173,7 @@ def downsample_volume(old, D):
 
 def downsample_image(old, D):
     """ Downsample 2d array using fourier transform """
+    assert old.shape[-1] > D, "Image size must be larger than downsample size, now {} vs {}".format(old.shape[-1], D)
     oldD = old.shape[-1]
     start = int(oldD / 2 - D / 2)
     stop = start + D

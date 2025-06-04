@@ -200,6 +200,7 @@ def worker(name,
     sampled_particles_num = np.random.normal(particles_mu, particles_sigma)
     sampled_particles_num = max(particles_mu - 2 * particles_sigma, min(particles_mu + 2 * particles_sigma, sampled_particles_num))
     sampled_particles_num = int(min(sampled_particles_num, pN)) # within 2sigma of (mu, sigma) distribution
+    sampled_particles_num = max(sampled_particles_num, 1) # must be no less than 1
     sampled_particles_start_idx = np.random.randint(0, pN-sampled_particles_num)
     sampled_particles_idx = np.arange(sampled_particles_start_idx, sampled_particles_start_idx + sampled_particles_num) # mod pN
     assert np.all(sampled_particles_idx < pN), 'sampled_particles_idx should be less than pN.'
