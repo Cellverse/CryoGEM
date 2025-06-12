@@ -173,7 +173,7 @@ def downsample_volume(old, D):
 
 def downsample_image(old, D):
     """ Downsample 2d array using fourier transform """
-    assert old.shape[-1] > D, "Image size must be larger than downsample size, now {} vs {}".format(old.shape[-1], D)
+    assert old.shape[-1] >= D, "Image size must be no less than the expected downsample size, now {} vs {}".format(old.shape[-1], D)
     oldD = old.shape[-1]
     start = int(oldD / 2 - D / 2)
     stop = start + D
