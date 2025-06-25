@@ -39,9 +39,23 @@ conda activate cryogem
    pip install -e . # tested on Ubuntu 20.04 with a single NVIDIA RTX 3090 GPU.
 ```
 
-### Dataset
+### Dataset & Checkpoints
 
-As the dataset is too large to upload, please download [data.zip](https://www.dropbox.com/scl/fi/0zczm5hlb1h8qes1kobhz/data.zip?rlkey=46ob2ywa80t1mcvezy4lj6tu2&st=626po0mp&dl=0) on Dropbox, and unzip it to `testing/` .
+As the dataset of EMPIAR-10028 is too large to upload, please download [data.zip](https://www.dropbox.com/scl/fi/0zczm5hlb1h8qes1kobhz/data.zip?rlkey=46ob2ywa80t1mcvezy4lj6tu2&st=626po0mp&dl=0) on Dropbox, and unzip it to `testing/` .
+
+**Update**: We have also provided the other four checkpoints in our paper to reproduce the results for EMPIAR-10025, EMPIAR-10075, EMPIAR-10345, and EMPIAR-10590, please download [checkpoints.zip](https://drive.google.com/file/d/1ddxR7HGMuI8tSPSgWODg-44bVhVoj59Y/view?usp=sharing).
+For example, to utilize the checkpoint of 10075, put its checkpoint files to checkpoints/10075/, and run the following code to generate results (You should prepare the synthetic data and the ice gradient files):
+
+```
+cryogem test --name 10075 --max_dataset_size 1000 --num_test 1000 --apix 4.64 --gpu_ids 0 \
+  --sync_dir "save_images/gen_data/PhageMS2(10075)/testing_dataset/mics_mrc" \
+  --mask_dir "save_images/gen_data/PhageMS2(10075)/testing_dataset/particles_mask" \
+  --pose_dir "save_images/gen_data/PhageMS2(10075)/testing_dataset/mics_particle_info" \
+  --weight_map_dir "save_images/esti_ice/PhageMS2(10075)/" \
+  --save_dir "save_images/test/PhageMS2(10075)/"```
+```
+
+Check out [this issue](https://github.com/Cellverse/CryoGEM/issues/7) for more details.
 
 ---
 
