@@ -41,9 +41,9 @@ conda activate cryogem
 
 ### Dataset & Checkpoints
 
-As the dataset of EMPIAR-10028 is too large to upload, please download [data.zip](https://www.dropbox.com/scl/fi/0zczm5hlb1h8qes1kobhz/data.zip?rlkey=46ob2ywa80t1mcvezy4lj6tu2&st=626po0mp&dl=0) on Dropbox, and unzip it to `testing/` .
+As the dataset of EMPIAR-10028 is too large to upload, please download [data.zip](https://huggingface.co/datasets/cellverse/CryoGEM/resolve/main/data.zip) on Hugging Face, and unzip it to `testing/` .
 
-**Update**: We have also provided the other four checkpoints in our paper to reproduce the results for EMPIAR-10025, EMPIAR-10075, EMPIAR-10345, and EMPIAR-10590, please download [checkpoints.zip](https://drive.google.com/file/d/1ddxR7HGMuI8tSPSgWODg-44bVhVoj59Y/view?usp=sharing).
+**Update**: We have also provided the other four checkpoints in our paper to reproduce the results for EMPIAR-10025, EMPIAR-10075, EMPIAR-10345, and EMPIAR-10590, please download [checkpoints.zip](https://huggingface.co/datasets/cellverse/CryoGEM/resolve/main/checkpoints.zip).
 For example, to utilize the checkpoint of 10075, put its checkpoint files to checkpoints/10075/, and run the following code to generate results (You should prepare the synthetic data and the ice gradient files):
 
 ```
